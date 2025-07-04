@@ -1,0 +1,6 @@
+@DotNet_BLog.WebApi_HostAddress = http://localhost:5083
+
+GET {{DotNet_BLog.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
