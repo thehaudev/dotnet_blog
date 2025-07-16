@@ -1,11 +1,7 @@
-﻿using DotNet_BLog.Core.Domain.identity;
+﻿using AutoMapper;
+using DotNet_BLog.Core.Repositories;
 using DotNet_BLog.Core.SeedWorks;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DotNet_BLog.Data.Repositories;
 
 namespace DotNet_BLog.Data.SeedWorks
 {
@@ -13,10 +9,14 @@ namespace DotNet_BLog.Data.SeedWorks
     {
         private readonly BlogContext _context;
 
-        public UnitOfWork(BlogContext context)
+        public UnitOfWork(BlogContext context, IMapper mapper)
         {
             _context = context;
+            Posts = new PostRepository(context, mapper);
         }
+
+        public IPostRepository Posts { get; private set; }
+
         public async Task<int> CompleteAsync()
         {
             return await _context.SaveChangesAsync();

@@ -20,7 +20,7 @@ namespace DotNet_BLog.Data.Repositories
         {
             return _context.Posts.OrderByDescending(x => x.ViewCount).Take(count).ToListAsync();
         }
-        public async Task<PagedResult<PostInListDto>> GetPostsPagingAsync(string keyword, Guid? categoryId, int pageIndex = 1, int pageSize = 10)
+        public async Task<PagedResult<PostInListDto>> GetPostsPagingAsync(string? keyword, Guid? categoryId, int pageIndex = 1, int pageSize = 10)
         {
             var query = _context.Posts.AsQueryable();
             if (!string.IsNullOrEmpty(keyword))
