@@ -1,4 +1,5 @@
 using DotNet_BLog.Core.Domain.identity;
+using DotNet_BLog.Core.Models.Content;
 using DotNet_BLog.Core.SeedWorks;
 using DotNet_BLog.Data;
 using DotNet_BLog.Data.Repositories;
@@ -55,6 +56,9 @@ foreach (var service in services)
         builder.Services.Add(new ServiceDescriptor(directInterface, service, ServiceLifetime.Scoped));
     }
 }
+
+builder.Services.AddAutoMapper(typeof(PostInListDto));
+
 //Default config for ASP.NET core
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
